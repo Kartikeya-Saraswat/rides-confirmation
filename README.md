@@ -1,4 +1,4 @@
-# 🚗 Rides Confirmation — End-to-End Data Engineering Pipeline
+# Rides Confirmation — End-to-End Data Engineering Pipeline
 
 An end-to-end data engineering project that processes Uber-style ride confirmation data through **batch and real-time ingestion pipelines** using Azure Data Factory, Azure Event Hubs, ADLS Gen2, and Azure Databricks.
 
