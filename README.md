@@ -66,13 +66,14 @@ sequenceDiagram
 
 The FastAPI application generates synthetic ride confirmation data using Faker.
 
-![FastAPI Ride Confirmation](docs/screenshots/01-fastapi-booking.png)
+![FastAPI Ride Confirmation](fast_api_app1.png)
+![FastAPI Ride Confirmation](fast_api_app2.png)
 
 ### Event Hub
 
 The generated ride event is published to Azure Event Hubs.
 
-![Azure Event Hub](docs/screenshots/02-event-hub.png)
+![Azure Event Hub](docs/screenshots/new_ride.png)
 
 ---
 
@@ -113,7 +114,7 @@ The metadata file contains the files that need to be ingested:
 ]
 ```
 
-![ADF Pipeline](docs/screenshots/03-adf-pipeline.png)
+![ADF Pipeline](docs/screenshots/adf_pipeline.png)
 
 ---
 
@@ -131,6 +132,7 @@ uber.bronze.map_cities
 uber.bronze.map_vehicle_types
 uber.bronze.map_payment_methods
 ```
+![Historical and Mapping Data](docs/screenshots/testval1.png)
 
 ## Streaming Data
 
@@ -146,7 +148,7 @@ The streaming events are stored in:
 uber.bronze.rides_raw
 ```
 
-![Databricks Pipeline](docs/screenshots/04-databricks-pipeline.png)
+![Real Time Ingesion](docs/screenshots/testval2.png)
 
 ---
 
@@ -182,6 +184,8 @@ flowchart LR
 
 Spark Declarative Pipelines append flows are used to bring both sources into the same streaming table.
 
+![Streaming Table](docs/screenshots/testval3.png)
+
 ## `silver_obt`
 
 `silver_obt` is the enriched Silver dataset.
@@ -197,11 +201,9 @@ It joins ride data with reference tables containing:
 
 A watermark on `booking_timestamp` is used to manage late-arriving streaming data and control streaming state.
 
-![Staging Rides](docs/screenshots/05-stg-rides.png)
-
-![Silver OBT](docs/screenshots/06-silver-obt.png)
-
+![Silver Layer OBT](docs/screenshots/testval4.png)
 ---
+ 
 
 # 🥇 Gold Layer
 
@@ -220,6 +222,7 @@ flowchart TB
     SILVER --> L["dim_location"]
     SILVER --> F["fact"]
 ```
+
 
 ## Dimension Tables
 
@@ -246,8 +249,11 @@ The `fact` table contains ride-level measures such as:
 - Tip
 - Rating
 
-![Gold Model](docs/screenshots/07-gold-model.png)
 
+![Gold Layer](docs/screenshots/testval5.png)
+
+![Final Databricks Pipeline](docs/screenshots/db_pipeline_graph.png)
+![Fianl Databricks Pipeline Performance](docs/screenshots/db_pipeline_performance.png)
 ---
 
 # 🔄 Slowly Changing Dimensions
@@ -293,7 +299,7 @@ __END_AT
 
 This allows previous versions of a location record to remain available after an update.
 
-![SCD Type 2](docs/screenshots/08-scd2.png)
+![SCD Type 2](docs/screenshots/testval7.png)
 
 ---
 
@@ -339,7 +345,7 @@ null_ride_ids | duplicate_ride_ids | negative_fares
 0             | 0                  | 0
 ```
 
-![Data Quality Validation](docs/screenshots/09-data-quality.png)
+![Data Quality Validation](docs/screenshots/testval8.png)
 
 ---
 
