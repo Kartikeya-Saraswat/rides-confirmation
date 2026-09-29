@@ -65,7 +65,8 @@ sequenceDiagram
 The FastAPI application generates synthetic ride confirmation data using Faker.
 
 ![FastAPI Ride Confirmation](fast_api_app1.png)
-![FastAPI Ride Confirmation](fast_api_app2.png)
+
+![FastAPI Ride Confirmations](fast_api_app2.png)
 
 ### Event Hub
 
