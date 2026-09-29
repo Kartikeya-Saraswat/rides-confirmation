@@ -4,8 +4,6 @@ An end-to-end data engineering project that processes Uber-style ride confirmati
 
 The pipeline follows a **Medallion Architecture** and demonstrates metadata-driven ingestion, real-time event streaming, data enrichment, dimensional modeling, SCD Type 1/2, and data-quality validation.
 
-> **Project note:** The initial implementation was based on a guided data engineering project. This repository represents my organized, validated, and incrementally productionized version of the implementation.
-
 ---
 
 ## 🏗️ Architecture
